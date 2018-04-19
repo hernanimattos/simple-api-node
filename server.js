@@ -1,18 +1,17 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
+var routes = require('./routes/index')
+var port = process.env.PORT || 3100;
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
-var router = express.Router();
+app.use('/api', routes);
 
-app.use('/', function (req, res) {
-	res.json({message:'Deu certo'})
+app.listen(port, function (res) {
 
-})
-app.use('/api', router);
+	console.log('run in ' + port)
 
-
-app.listen(8200);
+});
 
