@@ -8,9 +8,7 @@ var db = mongoose.connection;
 
 db.on("error", console.error.bind(console, "connection error:"));
 db.once("open", function(res) {
-  // we're connected!
 
-  console.log('ff', res)
 });
 
 const port = process.env.PORT || 3100;
