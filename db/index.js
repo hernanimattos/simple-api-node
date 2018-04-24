@@ -1,33 +1,35 @@
+
 const mongoose = require("mongoose");
-const URL = 'mongodb://localhost:27017/api-test';
-mongoose.connect("mongodb://localhost:27017/api-test")
+mongoose.connect("mongodb://localhost:27017/api-study")
+
 var db = mongoose.connection;
-exports.connect = function () {
-		db.on("error", function () {
+
+exports.connect = () => {
+		db.on("error", () => {
 			console.error.bind(console, "connection error:")
 
 		});
-		db.once("open", function (res) {
+		db.once("open", (res) => {
 
-			console.log('Mongo connection is open')
+			console.log('Mongo connection is open', res)
 
 		});
 
-		db.on("connected", function () {
-			console.log("Mongo connected")
+		db.on("connected", (res) => {
+			console.log("Mongo connected", res)
 			return true;
 
 		});
 
-		db.on("disconnected", function (ref) {
-			console.log(" Mongo disconnected")
+		db.on("disconnected", (ref) => {
+			console.log(" Mongo disconnected", ref)
 
 		});
 
 };
 
-exports.close =  function () {
-	db.close(function () {
+exports.close = () => {
+	db.close(() => {
 		process.exit(0);
 	})
 }

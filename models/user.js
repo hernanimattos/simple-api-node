@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-
+require('../db').connect();
 const user = new Schema({
 	id: Number,
 	name: String,
@@ -11,3 +11,4 @@ const user = new Schema({
 	},
 	hidden: Boolean,
 });
+module.exports = mongoose.model('User', user);
