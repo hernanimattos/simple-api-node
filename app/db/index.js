@@ -1,11 +1,10 @@
 
 const mongoose = require("mongoose");
 mongoose.connect("mongodb://localhost:27017/api-study")
+const db = mongoose.connection;
+let connect = function() {
+		db.on("error", (error) => {
 
-var db = mongoose.connection;
-
-exports.connect = () => {
-		db.on("error", () => {
 			console.error.bind(console, "connection error:")
 
 		});
@@ -14,23 +13,26 @@ exports.connect = () => {
 			console.log('Mongo connection is open', res)
 
 		});
-
 		db.on("connected", (res) => {
+
 			console.log("Mongo connected", res)
 			return true;
 
 		});
-
 		db.on("disconnected", (ref) => {
+
 			console.log(" Mongo disconnected", ref)
 
 		});
-
 };
 
-exports.close = () => {
+let stop = () => {
 	db.close(() => {
 		process.exit(0);
 	})
 }
+
+module.exports = stop;
+module.exports = connect;
+
 
