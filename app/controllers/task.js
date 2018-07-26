@@ -1,13 +1,15 @@
-var task = require('../models/task.js');
+import task from "../models/task.js";
 
-exports.alltasks = (req, res) => {
+const alltasks = (req, res) => {
 	const connection = require('../db');
+
+	console.log(res)
 	task.find({}, (err, results)  => {
 		return res.send(results)
 	})
 }
 
-exports.findById = (req, res) => {
+const findById = (req, res) => {
 	const connection = require('../db');
 	task.findOne({ '_id': req.params.id }, (err, result) => {
 		if(err) console.log(err)
@@ -15,7 +17,7 @@ exports.findById = (req, res) => {
 	});
 };
 
-exports.edit = (req, res) => {
+const edit = (req, res) => {
 	const connection = require('../db');
 	 task.findById( req.params.id, (err, current) => {
 		current.status = req.query.status,
@@ -25,8 +27,9 @@ exports.edit = (req, res) => {
 	});
 };
 
-exports.create = (req, res) => {
+const create = (req, res) => {
 	const connection = require('../db');
+	console.log(res, req)
 	const Task = new task({
 		description: req.query.description,
 		status: req.query.status,
@@ -37,7 +40,7 @@ exports.create = (req, res) => {
 	})
 }
 
-exports.delete = (req, res) => {
+const _delete = (req, res) => {
 	const connection = require('../db');
 	task.findById(req.params.id, (err, current) => {
 		current.status = req.query.status,
@@ -45,6 +48,14 @@ exports.delete = (req, res) => {
 				return res.send(success);
 			})
 	});
+}
+
+export default {
+	alltasks,
+	findById,
+	edit,
+	create,
+	_delete,
 }
 
 

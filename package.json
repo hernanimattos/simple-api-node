@@ -4,7 +4,9 @@
   "description": "Node simple api to personal use",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js ."
+    "start": "nodemon server.js ",
+    "babel": "babel-node server.js",
+    "babel-debug": "nodemon --exec babel-node server.js --inspect"
   },
   "author": "Hernani Mattos",
   "license": "ISC",
@@ -15,6 +17,8 @@
     "nodemon": "^1.17.3"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
     "nodemon": "^1.17.3"
   }
 }

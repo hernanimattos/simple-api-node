@@ -1,7 +1,9 @@
-const express = require('express');
+	
+
+import express from "express";
 const app = express();
-const bodyParser = require('body-parser');
-const task = require('./app/routes/task.js');
+import bodyParser from "body-parser";
+import task from "./app/routes/task";
 
 
 const port = process.env.PORT || 3100;
@@ -19,5 +21,5 @@ app.listen(port, (res) => {
 });
 
 
-module.exports = app;
+export { app };
 
