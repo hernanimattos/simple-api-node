@@ -4,9 +4,9 @@
   "description": "Node simple api to personal use",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js ",
+    "start-nodemon": "nodemon server.js ",
     "babel": "babel-node server.js",
-    "babel-debug": "nodemon --exec babel-node server.js --inspect"
+    "start": "nodemon --exec babel-node server.js --inspect"
   },
   "author": "Hernani Mattos",
   "license": "ISC",

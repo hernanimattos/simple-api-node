@@ -1,16 +1,15 @@
 import task from "../models/task.js";
+import { connect } from "../db";
 
 const alltasks = (req, res) => {
-	const connection = require('../db');
-
-	console.log(res)
+	connect()
 	task.find({}, (err, results)  => {
 		return res.send(results)
 	})
 }
 
 const findById = (req, res) => {
-	const connection = require('../db');
+	connect()
 	task.findOne({ '_id': req.params.id }, (err, result) => {
 		if(err) console.log(err)
 		return res.send(result);
@@ -18,7 +17,7 @@ const findById = (req, res) => {
 };
 
 const edit = (req, res) => {
-	const connection = require('../db');
+	connect()
 	 task.findById( req.params.id, (err, current) => {
 		current.status = req.query.status,
 		 current.save((err, success)=>{
@@ -28,8 +27,8 @@ const edit = (req, res) => {
 };
 
 const create = (req, res) => {
-	const connection = require('../db');
-	console.log(res, req)
+	connect()
+	console.log(res, 'response')
 	const Task = new task({
 		description: req.query.description,
 		status: req.query.status,
@@ -41,7 +40,7 @@ const create = (req, res) => {
 }
 
 const _delete = (req, res) => {
-	const connection = require('../db');
+	connect()
 	task.findById(req.params.id, (err, current) => {
 		current.status = req.query.status,
 			current.remove((err, success) => {
